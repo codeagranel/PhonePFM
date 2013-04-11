@@ -1,26 +1,41 @@
 <!DOCTYPE HTML>
 <html>
-    <head>
-      <script type="text/javascript" charset="utf-8" src="cordova-1.5.0.js"></script>
-      <script type="text/javascript" src="http://code.jquery.com/jquery-latest.pack.js"></script>
-        <script type="text/javascript">
-                 function makeCall(){
-				    var url = "http://personalfinancesmanager.azurewebsites.net/api/Expenses";				    				
-				    $.ajax({
-				            headers: {"Content-Type":"application/json; charset=UTF-8"},
-				            type: "GET",
-				            url: url,
-				            dataType: "json",
-				            success: function(data){$('#result').html('resultado: '+ JSON.stringify(data));},
-				            error: function(){$('#result').html('deu zebra!');}				            
-				    	});
-				}
-        </script> 
+	<head>
+		<script type="text/javascript" src="js/cordova-1.5.0.js" charset="utf-8"></script>
+		<script type="text/javascript" src="js/angular.min.js"></script>
+		<script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
+		<script type="text/javascript" src="js/custom.js"></script>
+	</head>
 
-    </head>
+	<body>
+		<input type="button" onclick="makeCall()" value="call!"/>
 
-    <body>
-    <input type="button" onclick="makeCall()" value="call!"/>
-       <span id='result'></span>
-    </boby>
+		<div ng-app ng-controller="TesteCtrl">
+			<table border="1" id="lista_produtos">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Name</th>
+						<th>Amount</th>
+						<th>Description</th>
+						<th>Paid</th>
+						<th>Parcels</th>
+						<th>Recurrent</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="un in lista">
+						<td>{{un.Id}}</td>
+						<td>{{un.Name}}</td>
+						<td>{{un.Amount}}</td>
+						<td>{{un.Description}}</td>
+						<td>{{un.Paid}}</td>
+						<td>{{un.Parcels}}</td>
+						<td>{{un.Recurrent}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		</boby>
 </html>
